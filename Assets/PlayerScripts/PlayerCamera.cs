@@ -8,9 +8,10 @@ public class PlayerCamera : MonoBehaviour
     [SerializeField] float sensY;
 
     [SerializeField] Transform orientation;
+    [SerializeField] Transform player;
 
- float _xRotation;
- float _yRotation;
+    float _xRotation;
+    float _yRotation;
 
     private void Start()
     {
@@ -22,7 +23,7 @@ public class PlayerCamera : MonoBehaviour
     {
         //get mouse input
         float mouseX = Input.GetAxisRaw("Mouse X") * Time.deltaTime * sensX;
-        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;     
+        float mouseY = Input.GetAxisRaw("Mouse Y") * Time.deltaTime * sensY;
 
         _yRotation += mouseX;
 
@@ -32,5 +33,7 @@ public class PlayerCamera : MonoBehaviour
         //rotate camera and player orientation
         transform.rotation = Quaternion.Euler(_xRotation, _yRotation, 0);
         orientation.rotation = Quaternion.Euler(0, _yRotation, 0);
+
+        player.rotation = Quaternion.Euler(0, _yRotation, 0);
     }
 }
